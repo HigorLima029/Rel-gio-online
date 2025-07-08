@@ -40,5 +40,3 @@ relogio-digital/
 Este projeto é de uso livre para fins educacionais e pessoais.
 
 ---
-
-Feito com 💻 por [Seu Nome]

@@ -1,49 +1,257 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root{
+  --bg-a: #ffe53b;
+  --bg-b: #ff2525;
+  --card-bg: rgba(5, 5, 5, 0.9);
+  --card-shadow: rgba(0, 0, 0, .7);
+  --text: #ffffff;
+  --text-muted: rgba(255,255,255,.75);
+  --accent: #ff2525;
+  --control-bg: rgba(5, 5, 5, 0.55);
+  --control-text: #fff;
+  --control-border: rgba(255,255,255,.35);
+  --face-bg: rgba(5,5,5,0.85);
+  --face-mark: rgba(255,255,255,.8);
+}
+
+:root[data-theme="dark"]{
+  --bg-a: #14141f;
+  --bg-b: #05050a;
+  --card-bg: rgba(255,255,255,0.06);
+  --card-shadow: rgba(0,0,0,.6);
+  --text: #f5f5f7;
+  --text-muted: rgba(245,245,247,.65);
+  --accent: #ff5b3d;
+  --control-bg: rgba(255,255,255,0.08);
+  --control-text: #f5f5f7;
+  --control-border: rgba(255,255,255,.18);
+  --face-bg: rgba(255,255,255,0.05);
+  --face-mark: rgba(245,245,247,.7);
+}
 
 *{
-margin: 0;
-padding: 0;
-font-family:'Open Sans,' sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
-    height: 100vh;
-    background: linear-gradient(120deg, #ffe53bd8, #ff2525da);
+    min-height: 100vh;
+    background: linear-gradient(120deg, var(--bg-a), var(--bg-b));
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 32px 16px;
+    transition: background .4s ease;
+}
+
+.app{
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.app-header{
+  text-align: center;
+  color: var(--text);
+}
+
+.eyebrow{
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.app-header h1{
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 700;
+}
+
+/* seletor de país */
+.seletor{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--control-bg);
+  border: 1px solid var(--control-border);
+  border-radius: 999px;
+  padding: 8px 18px;
+  backdrop-filter: blur(6px);
+}
+
+.bandeira{
+  font-size: 22px;
+  line-height: 1;
+}
+
+.seletor select{
+  flex: 1;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--control-text);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 6px 4px;
+  cursor: pointer;
+}
+
+.seletor select option{
+  color: #111;
+}
+
+.offset{
+  font-family: 'Inconsolata', monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* botões */
+.icon-btn{
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--control-border);
+  background: var(--control-bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.icon{
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.icon-moon{ display: none; }
+:root[data-theme="dark"] .icon-sun{ display: none; }
+:root[data-theme="dark"] .icon-moon{ display: block; }
+
+.link-btn{
+  background: none;
+  border: none;
+  color: var(--text);
+  text-decoration: underline;
+  font-size: 13px;
+  cursor: pointer;
+  opacity: .85;
+}
+.link-btn:hover{ opacity: 1; }
+
+/* relógio digital */
+.relogio-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
 }
 
 .relogio {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    height: 200px;
-    width: 550px;
-    background: transparent;
-    border-radius: 3px;
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, .5);
+    justify-content: center;
+    gap: 18px;
+    width: 100%;
 }
 
 .relogio div {
-height: 170px;
-width: 150px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-color: #ffF;
-background: rgba(5, 5, 5, 0.9);
-box-shadow: 5px 5px 15px rgba(0, 0, 0, .7);
-border-radius: 7px;
-letter-spacing: 3px;
+  height: 150px;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  background: var(--card-bg);
+  box-shadow: 5px 5px 15px var(--card-shadow);
+  border-radius: 10px;
+  letter-spacing: 3px;
 }
 
 .relogio span {
-font-weight: bolder;
-font-size: 60px;
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+  font-size: 52px;
 }
 
 .relogio span.tempo {
-    font-size: 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.data{
+  color: var(--text);
+  font-size: 14px;
+  text-transform: capitalize;
+  opacity: .9;
+}
+
+/* relógio analógico */
+.analogico .analog{
+  width: min(280px, 70vw);
+  height: min(280px, 70vw);
+}
+
+.mostrador{
+  fill: var(--face-bg);
+  stroke: var(--face-mark);
+  stroke-width: 2;
+}
+
+.marcas line{
+  stroke: var(--face-mark);
+  stroke-width: 2;
+}
+
+.ponteiro{
+  stroke-linecap: round;
+  transform-origin: 150px 150px;
+}
+.ponteiro.hora{ stroke: var(--text); stroke-width: 7; }
+.ponteiro.minuto{ stroke: var(--text); stroke-width: 5; }
+.ponteiro.segundo{ stroke: var(--accent); stroke-width: 2; }
+
+.centro{ fill: var(--accent); }
+
+/* responsivo */
+@media (max-width: 560px){
+  .relogio{ gap: 10px; }
+  .relogio div{
+    height: 110px;
+    width: 92px;
+    border-radius: 8px;
+  }
+  .relogio span{ font-size: 34px; }
+  .seletor{ padding: 8px 12px; }
+  .seletor select{ font-size: 13px; }
+  .offset{ display: none; }
+}
+
+@media (max-width: 380px){
+  .relogio div{ width: 82px; height: 96px; }
+  .relogio span{ font-size: 28px; }
 }
